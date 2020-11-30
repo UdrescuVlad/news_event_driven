@@ -1,4 +1,4 @@
-package com.event.driven;
+package com.event.driven.news;
 
 public class News {
 
@@ -7,11 +7,15 @@ public class News {
     private String source;
     private String author;
 
-    public News(String first_publication, String last_modified, String source, String author) {
+    public News(String first_publication, String source, String author) {
         this.first_publication = first_publication;
-        this.last_modified = last_modified;
+        this.last_modified = first_publication;
         this.source = source;
         this.author = author;
+    }
+
+    public News(){
+
     }
 
     @Override
