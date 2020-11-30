@@ -1,6 +1,6 @@
 package com.event.driven.events;
 
-import com.event.driven.News;
+import com.event.driven.news.News;
 
 abstract class Event {
     abstract public String toString();

@@ -1,6 +1,6 @@
-package com.event.driven;
+package com.event.driven.news;
 
-public class News {
+public class News<T> {
 
     private String first_publication;
     private String last_modified;

@@ -20,13 +20,13 @@ public class Main {
             editor.addObserver(r);
         }
 
-        System.out.println(editor.getName() + " publish some news.");
+        System.out.println("\n\n" + editor.getName() + " publish some news.");
         editor.publishNews();
 
-        System.out.println(editor.getName() + " modify some news.");
+        System.out.println("\n\n" + editor.getName() + " modify some news.");
         editor.modifyNews();
 
-        System.out.println(editor.getName() + " deleted some news.");
+        System.out.println("\n\n" + editor.getName() + " deleted some news.");
         editor.deleteNews();
 
 
