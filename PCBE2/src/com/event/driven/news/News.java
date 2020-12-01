@@ -6,12 +6,14 @@ public class News {
     private String last_modified;
     private String source;
     private String author;
+    private int readersCount;
 
     public News(String first_publication, String source, String author) {
         this.first_publication = first_publication;
         this.last_modified = first_publication;
         this.source = source;
         this.author = author;
+        this.readersCount = 0;
     }
 
     public News(){
@@ -61,5 +63,12 @@ public class News {
         this.author = author;
     }
 
+    public int getReadersCount() {
+        return readersCount;
+    }
+
+    public void increaseReadersCount() {
+        readersCount++;
+    }
 
 }

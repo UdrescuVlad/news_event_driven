@@ -12,6 +12,10 @@ public class ModifyNews extends Event {
         this.modifyNews.setSource(source);
     }
 
+    public ModifyNews(){
+        this.modifyNews = new News();
+    }
+
     @Override
     public void setNews(News news) {
         this.modifyNews.setFirst_publication(news.getFirst_publication());

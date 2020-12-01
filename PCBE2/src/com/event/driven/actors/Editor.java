@@ -12,33 +12,32 @@ public class Editor implements EditorReader {
     private String name;
     private Application app;
 
-    public PublishNews publishNews(News news) {
+    public Editor(String name, Application app) {
+        this.name = name;
+        this.app = app;
+    }
+
+    public void publishNews(News news) {
         PublishNews publishNews = new PublishNews(news.getFirst_publication(), news.getSource(), news.getAuthor());
         app.publish(publishNews);
-
-        return publishNews;
     }
 
     public void deleteNews(News news) {
         DeleteNews deleteNews = new DeleteNews(news);
+        app.publish(deleteNews);
     }
 
-    public void modifyNews(News news) {
-        ModifyNews modifyNews = new ModifyNews(news, "27.11.2020", "DAN_COSMA.ro");
-    }
-
-    public Editor(String name, Application app) {
-        this.name = name;
-        this.app = app;
+    public void modifyNews(News news, String modifyingDate, String newSource) {
+        ModifyNews modifyNews = new ModifyNews(news, modifyingDate, newSource);
+        app.publish(modifyNews);
     }
 
     public String getName() {
         return name;
     }
 
-    //TODO: Handle receiving of a ReadNews event
     @Override
     public void inform(Event event) {
-
+        System.out.println("\n*" + getName() + ", this news: " + event.getNews() + " have been read by " + event.getNews().getReadersCount() + " readers.");
     }
 }
