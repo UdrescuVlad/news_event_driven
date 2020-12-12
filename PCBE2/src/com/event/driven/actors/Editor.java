@@ -18,7 +18,7 @@ public class Editor implements EditorReader {
     }
 
     public void publishNews(News news) {
-        PublishNews publishNews = new PublishNews(news.getFirst_publication(), news.getSource(), news.getAuthor());
+        PublishNews publishNews = new PublishNews(news.getFirst_publication(), news.getSource(), news.getAuthor(),news.getNewsDomain());
         app.publish(publishNews);
     }
 

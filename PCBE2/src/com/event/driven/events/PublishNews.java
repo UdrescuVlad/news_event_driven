@@ -7,8 +7,8 @@ public class PublishNews extends Event {
     private News publishNews;
 
     public PublishNews(String first_publication,
-                       String source, String author) {
-        this.publishNews = new News(first_publication, source, author);
+                       String source, String author,String newsDomain) {
+        this.publishNews = new News(first_publication, source, author,newsDomain);
     }
 
     public PublishNews(){
@@ -21,6 +21,7 @@ public class PublishNews extends Event {
         this.publishNews.setLast_modified(news.getLast_modified());
         this.publishNews.setSource(news.getSource());
         this.publishNews.setAuthor(news.getAuthor());
+        this.publishNews.setNewsDomain(news.getNewsDomain());
     }
 
     @Override

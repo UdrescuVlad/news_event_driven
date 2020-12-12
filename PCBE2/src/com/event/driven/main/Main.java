@@ -33,7 +33,7 @@ public class Main {
         app.subscribe(new Author(e1.getName()), r1);
         app.subscribe(new Author(e1.getName()), r2);
         app.subscribe(null, r3);
-        News newsPMD = new News("10.10.2010", "www.pmd.ro", e1.getName());
+        News newsPMD = new News("10.10.2010", "www.pmd.ro", e1.getName(),"Stiinta");
         publishNews.setNews(newsPMD);
 
         e1.publishNews(publishNews.getNews());
@@ -42,7 +42,7 @@ public class Main {
         Event publishNews1 = new PublishNews();
 
         app.subscribe(/*publishNews1,*/ null, r4);
-        News newsPAD = new News("1.12.2020", "www.pad.oose.ro", e2.getName());
+        News newsPAD = new News("1.12.2020", "www.pad.oose.ro", e2.getName(),"Tehnologie");
         publishNews1.setNews(newsPAD);
         e2.publishNews(publishNews1.getNews());
 

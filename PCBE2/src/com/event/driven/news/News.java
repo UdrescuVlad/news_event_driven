@@ -7,13 +7,15 @@ public class News {
     private String source;
     private String author;
     private int readersCount;
+    private String newsDomain;
 
-    public News(String first_publication, String source, String author) {
+    public News(String first_publication, String source, String author,String newsDomain) {
         this.first_publication = first_publication;
         this.last_modified = first_publication;
         this.source = source;
         this.author = author;
         this.readersCount = 0;
+        this.newsDomain = newsDomain;
     }
 
     public News(){
@@ -27,6 +29,7 @@ public class News {
                 ", last_modified='" + last_modified + '\'' +
                 ", source='" + source + '\'' +
                 ", author='" + author + '\'' +
+                ",domain='" + newsDomain+ '\'' +
                 '}';
     }
 
@@ -69,6 +72,14 @@ public class News {
 
     public void increaseReadersCount() {
         readersCount++;
+    }
+
+    public String getNewsDomain(){
+        return newsDomain;
+    }
+
+    public void setNewsDomain(String newsDomain){
+        this.newsDomain=newsDomain;
     }
 
 }
