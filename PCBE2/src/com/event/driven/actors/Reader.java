@@ -2,6 +2,8 @@ package com.event.driven.actors;
 
 import com.event.driven.application.Application;
 import com.event.driven.events.*;
+import com.event.driven.exceptions.NewsAlreadyPublished;
+import com.event.driven.exceptions.NonexistentNews;
 import com.event.driven.news.News;
 
 public class Reader implements EditorReader {
@@ -14,7 +16,7 @@ public class Reader implements EditorReader {
         this.app = app;
     }
 
-    public void readNews(News news){
+    public void readNews(News news) throws NonexistentNews, NewsAlreadyPublished {
         ReadNews readNews = new ReadNews(news);
         app.publish(readNews);
     }

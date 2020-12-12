@@ -1,6 +1,8 @@
 package com.event.driven.actors;
 
 import com.event.driven.application.Application;
+import com.event.driven.exceptions.NewsAlreadyPublished;
+import com.event.driven.exceptions.NonexistentNews;
 import com.event.driven.news.News;
 import com.event.driven.events.DeleteNews;
 import com.event.driven.events.Event;
@@ -17,17 +19,17 @@ public class Editor implements EditorReader {
         this.app = app;
     }
 
-    public void publishNews(News news) {
+    public void publishNews(News news) throws NonexistentNews, NewsAlreadyPublished {
         PublishNews publishNews = new PublishNews(news.getFirst_publication(), news.getSource(), news.getAuthor(),news.getNewsDomain());
         app.publish(publishNews);
     }
 
-    public void deleteNews(News news) {
+    public void deleteNews(News news) throws NonexistentNews, NewsAlreadyPublished {
         DeleteNews deleteNews = new DeleteNews(news);
         app.publish(deleteNews);
     }
 
-    public void modifyNews(News news, String modifyingDate, String newSource) {
+    public void modifyNews(News news, String modifyingDate, String newSource) throws NonexistentNews, NewsAlreadyPublished {
         ModifyNews modifyNews = new ModifyNews(news, modifyingDate, newSource);
         app.publish(modifyNews);
     }
