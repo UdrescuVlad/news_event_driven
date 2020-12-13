@@ -9,11 +9,12 @@ import com.event.driven.events.PublishNews;
 import com.event.driven.exceptions.NewsAlreadyPublished;
 import com.event.driven.exceptions.NonexistentNews;
 import com.event.driven.filters.Author;
+import com.event.driven.filters.Domain;
 import com.event.driven.news.News;
 
 public class Main {
 
-    public static void main(String[] args) throws NonexistentNews, NewsAlreadyPublished {
+    public static void main(String[] args) {
         try {
             Application app = Application.getInstance();
 
@@ -34,7 +35,7 @@ public class Main {
 
             app.subscribe(new Author(e1.getName()), r1);
             app.subscribe(new Author(e1.getName()), r2);
-            app.subscribe(null, r3);
+            app.subscribe(new Domain("Stiinta"), r3);
             News newsPMD = new News("10.10.2010", "www.pmd.ro", e1.getName(), "Stiinta");
             publishNews.setNews(newsPMD);
 
@@ -43,7 +44,7 @@ public class Main {
 
             Event publishNews1 = new PublishNews();
 
-            app.subscribe(/*publishNews1,*/ null, r4);
+            app.subscribe(null, r4);
             News newsPAD = new News("1.12.2020", "www.pad.oose.ro", e2.getName(), "Tehnologie1");
             News newsPAD2 = new News("1.12.2020", "www.pad.oose.ro", e2.getName(), "Tehnologie2");
             publishNews1.setNews(newsPAD);
@@ -65,10 +66,9 @@ public class Main {
 
             e1.deleteNews(newsPMD);
             e1.deleteNews(newsPAD1);
-        } catch (NonexistentNews nonexistentNews) {
-            System.out.println("\n\n\n" + nonexistentNews.toString());
-        } catch (NewsAlreadyPublished newsAlreadyPublished) {
-            System.out.println("\n\n\n" + newsAlreadyPublished.toString());
+        } catch (NonexistentNews | NewsAlreadyPublished newsException) {
+            System.out.println("\n\n\n" + newsException.toString());
+            newsException.printStackTrace();
         }
 
     }

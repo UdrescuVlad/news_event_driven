@@ -10,16 +10,8 @@ public class Author extends Filter {
         this.author = author;
     }
 
-//    public void setAuthor(String author) {
-//        this.author = author;
-//    }
-
     @Override
     public boolean apply(Event event) {
-        if(event.getNews().getAuthor().equals(author)) {
-            return true;
-        } else {
-            return false;
-        }
+        return event.getNews().getAuthor().equals(author);
     }
 }

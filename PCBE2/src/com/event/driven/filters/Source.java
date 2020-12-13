@@ -10,16 +10,8 @@ public class Source extends Filter {
         this.source = source;
     }
 
-//    public void setSource(String source) {
-//        this.source = source;
-//    }
-
     @Override
     public boolean apply(Event event) {
-        if(event.getNews().getSource().equals(source)) {
-            return true;
-        } else {
-            return false;
-        }
+        return event.getNews().getSource().equals(source);
     }
 }

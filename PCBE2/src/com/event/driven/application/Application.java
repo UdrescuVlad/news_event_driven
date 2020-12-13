@@ -36,6 +36,7 @@ public class Application {
             if (news.size() == 0)
                 news.add(event.getNews());
             else {
+                //TODO: make some new contains method
                 if (!(news.contains(event.getNews())))
                     news.add(event.getNews());
                 else throw new NewsAlreadyPublished(event.getNews().toString());
@@ -99,8 +100,8 @@ public class Application {
         }
     }
 
-    public void subscribe(/*Event event,*/ Filter filter, Reader subscriber) {
-        Subscription subscription = new Subscription(/*event, */filter, subscriber);
+    public void subscribe(Filter filter, Reader subscriber) {
+        Subscription subscription = new Subscription(filter, subscriber);
 
         if (!subscriptions.contains(subscription)) {
             subscriptions.add(subscription);
