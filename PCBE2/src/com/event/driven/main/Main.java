@@ -3,9 +3,6 @@ package com.event.driven.main;
 import com.event.driven.application.Application;
 import com.event.driven.actors.Editor;
 import com.event.driven.actors.Reader;
-import com.event.driven.events.Event;
-import com.event.driven.events.ModifyNews;
-import com.event.driven.events.PublishNews;
 import com.event.driven.exceptions.NewsAlreadyPublished;
 import com.event.driven.exceptions.NonexistentNews;
 import com.event.driven.filters.Author;
@@ -31,33 +28,23 @@ public class Main {
             app.addEditor(e1);
             app.addEditor(e2);
 
-            Event publishNews = new PublishNews();
-
             app.subscribe(new Author(e1.getName()), r1);
             app.subscribe(new Author(e1.getName()), r2);
             app.subscribe(new Domain("Stiinta"), r3);
             News newsPMD = new News("10.10.2010", "www.pmd.ro", e1.getName(), "Stiinta");
-            publishNews.setNews(newsPMD);
 
-            e1.publishNews(publishNews.getNews());
-
-
-            Event publishNews1 = new PublishNews();
+            e1.publishNews(newsPMD);
+//            e1.publishNews(newsPMD); -> throws NewsAlreadyPublished exception
 
             app.subscribe(null, r4);
             News newsPAD = new News("1.12.2020", "www.pad.oose.ro", e2.getName(), "Tehnologie1");
             News newsPAD2 = new News("1.12.2020", "www.pad.oose.ro", e2.getName(), "Tehnologie2");
-            publishNews1.setNews(newsPAD);
-            publishNews1.setNews(newsPAD2);
 
-            e2.publishNews(publishNews1.getNews());
-            e2.publishNews(publishNews1.getNews());
+            e2.publishNews(newsPAD2);
+            e2.publishNews(newsPAD);
 
-            News newsPAD1 = new News("1.12.2020", "www.pad.oose.ro", e2.getName(), "Tehnologie");
+            News newsPAD1 = new News("1.12.2020", "www.pad.oose.ro", e1.getName(), "Tehnologie");
 
-            //Event modifyNews = new ModifyNews();
-
-            e1.deleteNews(newsPAD1);
             e2.modifyNews(newsPAD, "2.12.2020", "www.oose.pad.com");
 
             r1.readNews(newsPMD);
@@ -65,10 +52,9 @@ public class Main {
             r3.readNews(newsPMD);
 
             e1.deleteNews(newsPMD);
-            e1.deleteNews(newsPAD1);
+            //e1.deleteNews(newsPAD1); -> throws NonExistentNews exception
         } catch (NonexistentNews | NewsAlreadyPublished newsException) {
             System.out.println("\n\n\n" + newsException.toString());
-            newsException.printStackTrace();
         }
 
     }
