@@ -30,20 +30,18 @@ public class Main {
 
             app.subscribe(new Author(e1.getName()), r1);
             app.subscribe(new Author(e1.getName()), r2);
-            app.subscribe(new Domain("Stiinta"), r3);
-            News newsPMD = new News("10.10.2010", "www.pmd.ro", e1.getName(), "Stiinta");
+            app.subscribe(new Domain("Science"), r3);
+            News newsPMD = new News("10.10.2010", "www.pmd.ro", e1.getName(), "Science", "Computer Science", "PMD Content ...");
 
             e1.publishNews(newsPMD);
 //            e1.publishNews(newsPMD); -> throws NewsAlreadyPublished exception
 
             app.subscribe(null, r4);
-            News newsPAD = new News("1.12.2020", "www.pad.oose.ro", e2.getName(), "Tehnologie1");
-            News newsPAD2 = new News("1.12.2020", "www.pad.oose.ro", e2.getName(), "Tehnologie2");
+            News newsPAD = new News("1.12.2020", "www.pad.oose.ro", e2.getName(), "Tehnologie", "Software", "Content for PAD !!");
 
-            e2.publishNews(newsPAD2);
             e2.publishNews(newsPAD);
 
-            News newsPAD1 = new News("1.12.2020", "www.pad.oose.ro", e1.getName(), "Tehnologie");
+            News newsPAD1 = new News("1.12.2020", "www.pad.oose.ro", e1.getName(), "Tehnologie", "Something", "Another PAD Content");
 
             e2.modifyNews(newsPAD, "2.12.2020", "www.oose.pad.com");
 
