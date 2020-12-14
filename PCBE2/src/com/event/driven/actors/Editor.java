@@ -20,7 +20,7 @@ public class Editor implements EditorReader {
     }
 
     public void publishNews(News news) throws NonexistentNews, NewsAlreadyPublished {
-        PublishNews publishNews = new PublishNews(news.getFirst_publication(), news.getSource(), news.getAuthor(), news.getNewsDomain(), news.getNewsSubdomain());
+        PublishNews publishNews = new PublishNews(news.getFirst_publication(), news.getSource(), news.getAuthor(), news.getNewsDomain(), news.getNewsSubdomain(), news.getContent());
         app.publish(publishNews);
     }
 
