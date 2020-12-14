@@ -8,10 +8,10 @@ public class News {
     private String author;
     private int readersCount;
     private String newsDomain;
-
+    private String content;
     private String newsSubdomain;
 
-    public News(String first_publication, String source, String author,String newsDomain, String newsSubdomain) {
+    public News(String first_publication, String source, String author,String newsDomain, String newsSubdomain, String content) {
         this.first_publication = first_publication;
         this.last_modified = first_publication;
         this.source = source;
@@ -19,6 +19,7 @@ public class News {
         this.readersCount = 0;
         this.newsDomain = newsDomain;
         this.newsSubdomain = newsSubdomain;
+        this.content = content;
     }
 
     public News(){
@@ -34,6 +35,7 @@ public class News {
                 ", author='" + author + '\'' +
                 ", domain='" + newsDomain + '\'' +
                 ", subdomain='" + newsSubdomain + '\'' +
+                ", content='" + content + '\'' +
                 '}';
     }
 
@@ -94,11 +96,19 @@ public class News {
         this.newsSubdomain = newsSubdomain;
     }
 
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
     public boolean equals(Object o){
         return (o instanceof News) && ((News)o).getFirst_publication().equals(first_publication)
                 && ((News)o).getLast_modified().equals(last_modified) && ((News)o).getSource().equals(source)
                 && ((News)o).getAuthor().equals(author) && ((News)o).getNewsDomain().equals(newsDomain)
-                &&((News)o).getNewsSubdomain().equals(newsSubdomain);
+                &&((News)o).getNewsSubdomain().equals(newsSubdomain) && ((News)o).getContent().equals(content);
     }
 
 }
