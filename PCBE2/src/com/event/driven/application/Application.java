@@ -36,22 +36,35 @@ public class Application {
             if (news.size() == 0)
                 news.add(event.getNews());
             else {
-                //TODO: make some new contains method
-                if (!(news.contains(event.getNews())))
+                boolean contains = false;
+
+                for(News n : news){
+                    if(event.getNews().equals(n)){
+                        contains = true;
+                        break;
+                    }
+                }
+
+                if(!contains) {
                     news.add(event.getNews());
-                else throw new NewsAlreadyPublished(event.getNews().toString());
-                System.out.println("\n\n\n" + event.getNews().getAuthor() + ": " + event);
+                    System.out.println("\n\n\n" + event.getNews().getAuthor() + ": " + event);
+                } else {
+                    throw new NewsAlreadyPublished(event.getNews().toString());
+                }
+
+//                if (!(news.contains(event.getNews())))
+//                    news.add(event.getNews());
+//                else throw new NewsAlreadyPublished(event.getNews().toString());
+//                System.out.println("\n\n\n" + event.getNews().getAuthor() + ": " + event);
             }
             for (Subscription sub : subscriptions) {
-                if ((sub.filter == null || sub.filter.apply(event))/* && sub.getEvent().getClass().equals(event.getClass())*/) {
+                if ((sub.filter == null || sub.filter.apply(event))) {
                     sub.getReader().inform(event);
                 }
             }
 
             //Modify news
         } else if (event instanceof ModifyNews) {
-
-            //if(news.contains(event.getNews())) {
 
             for (News n : news) {
                 if (event.getNews().equals(n)) {
@@ -64,7 +77,7 @@ public class Application {
             System.out.println("\n\n\n" + event.getNews().getAuthor() + ": " + event);
 
             for (Subscription sub : subscriptions) {
-                if ((sub.filter == null || sub.filter.apply(event))/* && sub.getEvent().getClass().equals(event.getClass())*/) {
+                if ((sub.filter == null || sub.filter.apply(event))) {
                     sub.getReader().inform(event);
                 }
             }
@@ -83,7 +96,7 @@ public class Application {
             System.out.println("\n\n\n" + event.getNews().getAuthor() + ": " + event);
 
             for (Subscription sub : subscriptions) {
-                if ((sub.filter == null || sub.filter.apply(event))/* && sub.getEvent().getClass().equals(event.getClass())*/) {
+                if ((sub.filter == null || sub.filter.apply(event))) {
                     sub.getReader().inform(event);
                 }
             }
