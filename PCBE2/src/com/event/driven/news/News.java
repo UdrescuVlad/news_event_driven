@@ -82,4 +82,10 @@ public class News {
         this.newsDomain=newsDomain;
     }
 
+    public boolean equals(Object o){
+        return (o instanceof News) && ((News)o).getFirst_publication().equals(first_publication)
+                && ((News)o).getLast_modified().equals(last_modified) && ((News)o).getSource().equals(source)
+                && ((News)o).getAuthor().equals(author) && ((News)o).getNewsDomain().equals(newsDomain);
+    }
+
 }
