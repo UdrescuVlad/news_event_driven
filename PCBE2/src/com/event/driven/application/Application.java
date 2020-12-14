@@ -8,7 +8,6 @@ import com.event.driven.exceptions.NonexistentNews;
 import com.event.driven.filters.Filter;
 import com.event.driven.news.News;
 
-import javax.lang.model.element.NestingKind;
 import java.util.ArrayList;
 
 public class Application {
