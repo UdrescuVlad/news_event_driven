@@ -51,6 +51,7 @@ public class Main {
 
             e1.deleteNews(newsPMD);
             //e1.deleteNews(newsPAD1); -> throws NonExistentNews exception
+//            e1.modifyNews(newsPAD1, "1.1.2001", "www.pad.oose.com");
         } catch (NonexistentNews | NewsAlreadyPublished newsException) {
             System.out.println("\n\n\n" + newsException.toString());
         }

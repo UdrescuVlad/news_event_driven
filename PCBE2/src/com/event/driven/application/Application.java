@@ -47,18 +47,14 @@ public class Application {
                 if(!contains) {
                     news.add(event.getNews());
                     System.out.println("\n\n\n" + event.getNews().getAuthor() + ": " + event);
+
+                    for (Subscription sub : subscriptions) {
+                        if ((sub.filter == null || sub.filter.apply(event))) {
+                            sub.getReader().inform(event);
+                        }
+                    }
                 } else {
                     throw new NewsAlreadyPublished(event.getNews().toString());
-                }
-
-//                if (!(news.contains(event.getNews())))
-//                    news.add(event.getNews());
-//                else throw new NewsAlreadyPublished(event.getNews().toString());
-//                System.out.println("\n\n\n" + event.getNews().getAuthor() + ": " + event);
-            }
-            for (Subscription sub : subscriptions) {
-                if ((sub.filter == null || sub.filter.apply(event))) {
-                    sub.getReader().inform(event);
                 }
             }
 
@@ -69,35 +65,36 @@ public class Application {
                 if (event.getNews().equals(n)) {
                     n.setLast_modified(event.getNews().getLast_modified());
                     n.setSource(event.getNews().getSource());
+                    n.setContent(event.getNews().getContent());
+                    n.setNewsDomain(event.getNews().getNewsDomain());
+                    n.setNewsSubdomain(event.getNews().getNewsSubdomain());
+                    n.setContent(event.getNews().getContent());
+
+                    System.out.println("\n\n\n" + event.getNews().getAuthor() + ": " + event);
+
+                    for (Subscription sub : subscriptions) {
+                        if ((sub.filter == null || sub.filter.apply(event))) {
+                            sub.getReader().inform(event);
+                        }
+                    }
                     break;
-                }
+                } else throw new NonexistentNews(event.getNews().toString());
             }
-
-            System.out.println("\n\n\n" + event.getNews().getAuthor() + ": " + event);
-
-            for (Subscription sub : subscriptions) {
-                if ((sub.filter == null || sub.filter.apply(event))) {
-                    sub.getReader().inform(event);
-                }
-            }
-            //} else {
-            //System.out.println("\n\n\n" + "!!Nonexistent news!!");
-            //}
 
             //Delete news
         } else if (event instanceof DeleteNews) {
             for (News n : news) {
                 if (event.getNews().equals(n)) {
                     news.remove(event.getNews());
+                    System.out.println("\n\n\n" + event.getNews().getAuthor() + ": " + event);
+
+                    for (Subscription sub : subscriptions) {
+                        if ((sub.filter == null || sub.filter.apply(event))) {
+                            sub.getReader().inform(event);
+                        }
+                    }
                     break;
                 } else throw new NonexistentNews(event.getNews().toString());
-            }
-            System.out.println("\n\n\n" + event.getNews().getAuthor() + ": " + event);
-
-            for (Subscription sub : subscriptions) {
-                if ((sub.filter == null || sub.filter.apply(event))) {
-                    sub.getReader().inform(event);
-                }
             }
 
             //Read news
