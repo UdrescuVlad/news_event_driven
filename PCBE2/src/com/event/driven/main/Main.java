@@ -16,14 +16,15 @@ public class Main {
             Application app = Application.getInstance();
 
             Reader r1, r2, r3, r4;
-            r1 = new Reader("Ionel", app);
-            r2 = new Reader("Bonel", app);
-            r3 = new Reader("Vladut", app);
-            r4 = new Reader("Gica", app);
+            r1 = new Reader("Ion", app);
+            r2 = new Reader("Anca", app);
+            r3 = new Reader("Vlad", app);
+            r4 = new Reader("Lorena", app);
 
-            Editor e1, e2;
-            e1 = new Editor("Bogdan", app);
+            Editor e1, e2, e3;
+            e1 = new Editor("Mircea", app);
             e2 = new Editor("Andrei", app);
+            e3 = new Editor("Alex", app);
 
             app.addEditor(e1);
             app.addEditor(e2);
@@ -37,11 +38,11 @@ public class Main {
 //            e1.publishNews(newsPMD); -> throws NewsAlreadyPublished exception
 
             app.subscribe(null, r4);
-            News newsPAD = new News("1.12.2020", "www.pad.oose.ro", e2.getName(), "Tehnologie", "Software", "Content for PAD !!");
+            News newsPAD = new News("1.12.2020", "www.pad.oose.ro", e2.getName(), "Technology", "Software", "Content for PAD !!");
 
             e2.publishNews(newsPAD);
 
-            News newsPAD1 = new News("1.12.2020", "www.pad.oose.ro", e1.getName(), "Tehnologie", "Something", "Another PAD Content");
+            News newsSport = new News("1.12.2020", "www.health.com", e3.getName(), "Health", "Sport", "Some sport news.");
 
             e2.modifyNews(newsPAD, "2.12.2020", "www.oose.pad.com");
 
@@ -50,8 +51,8 @@ public class Main {
             r3.readNews(newsPMD);
 
             e1.deleteNews(newsPMD);
-            //e1.deleteNews(newsPAD1); -> throws NonExistentNews exception
-//            e1.modifyNews(newsPAD1, "1.1.2001", "www.pad.oose.com");
+            //e1.deleteNews(newsSport); -> throws NonExistentNews exception
+            //e1.modifyNews(newsSport, "1.1.2001", "www.pad.oose.com");
         } catch (NonexistentNews | NewsAlreadyPublished newsException) {
             System.out.println("\n\n\n" + newsException.toString());
         }
